@@ -1,0 +1,5 @@
+openpyxl
+requests
+
+# Local packages (editable installs)
+-e ../sku_reader
