@@ -168,7 +168,7 @@ def makeEmptyBatch(externalId):
 
     payload = {
     "external_batch_id": '"'+externalId+'"',
-    "batch_notes": "Nov 12 2025"
+    "batch_notes": "Nov 19 2025"
     }
 
     headers = {
