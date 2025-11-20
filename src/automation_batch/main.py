@@ -128,6 +128,12 @@ def skuCheck(batchBook, batchPath):
                 if sku.hd == True: 
                     batchSheet.cell(row = batchRow, column = 7).value = 'HD'
                     batchSheet.cell(row = batchRow, column = 8).value = sku.prodType#16 per batch for watch bands
+                    if sku.productmatch == 'Band':
+                        league = sku.league
+                        league = league.replace('/','')
+                        batchSheet.cell(row = batchRow, column = 9).value = league
+                        if sku.brand == True:
+                            batchSheet.cell(row = batchRow, column = 9).value = 'Brand'
                     if sku.productmatch == 'HDXAirpod' or sku.productmatch == 'Airpod' or sku.productmatch == 'BudsPro' or sku.productmatch == 'HDXBudsPro':#50 per batch
                         batchSheet.cell(row = batchRow, column = 8).value = 'Airpod'
                         #batchSheet.cell(row = batchRow, column = 9).value = sku.template
@@ -194,6 +200,7 @@ def batchAssign(batchBook, batchPath, batchNum, listBook, listPath):
         'FedExStandardOvernight',
         'First Class Package International',
         'Free FedEx 2 Day over $55', 
+        'Free FedEx 2 Day over $75',
         'USPS First Class International',
         'USPS Priority Mail 2-3 Day Delivery'
         #'UPS 2nd Day Air' Not actually priority
