@@ -134,12 +134,15 @@ def skuCheck(batchBook, batchPath):
                         batchSheet.cell(row = batchRow, column = 9).value = league
                         if sku.brand == True:
                             batchSheet.cell(row = batchRow, column = 9).value = 'Brand'
-                    if sku.productmatch == 'HDXAirpod' or sku.productmatch == 'Airpod' or sku.productmatch == 'BudsPro' or sku.productmatch == 'HDXBudsPro':#50 per batch
+                    if sku.productmatch == 'Airpod' or sku.productmatch == 'BudsPro':#50 per batch
                         batchSheet.cell(row = batchRow, column = 8).value = 'Airpod'
                         #batchSheet.cell(row = batchRow, column = 9).value = sku.template
+                    if sku.productmatch == 'HDXAirpod' or sku.productmatch == 'HDXBudsPro':#50 per batch
+                        batchSheet.cell(row = batchRow, column = 8).value = 'HDXAirpod'
                     if sku.productmatch == 'Phone':#14 per batch for 1-2 and 12 per batch for 3-4
                         batchSheet.cell(row = batchRow, column = 9).value = sku.template
-                    
+                        if sku.prodType == 'Phone2' or sku.prodType == 'Phone4':
+                            batchSheet.cell(row = batchRow, column = 9).value = 'HD-Phones2-4'
 
                 if sku.engraved == True:
                     batchSheet.cell(row = batchRow, column = 7).value = 'Engraved'#16 per batch for watch bands
@@ -445,22 +448,30 @@ def main():
     batchNumSheet = batchBook["BatchNumber"]
     batchNum = int(batchNumSheet.cell(row=1,column=1).value)
     
-    notesTrim(notesBook,notesPath)
-    notesToBatches(notesBook,batchBook,batchPath)
-    orderFill(batchBook, batchPath, ordersBook, ordersPath)
-    skuCheck(batchBook, batchPath)
-    #tkinter.messagebox.showinfo(title='BatchAssign', message='Check shipping in Batches.xlsx')
-    batchNum = batchAssign(batchBook, batchPath, batchNum, listBook, listPath)
-    batchNumSheet.cell(row=1,column=1).value = batchNum
-    saveExcel(batchBook, batchPath)
+    tk = Tk()
+    tk.geometry('100x150')
+    tk.eval('tk::PlaceWindow . center')
+    var1 = IntVar()
+    Checkbutton(tk, text='Excel Sheets', variable=var1).grid(row = 0, sticky = W)
+    var2 = IntVar()
+    Checkbutton(tk, text='API Calls', variable=var2).grid(row = 1, sticky = W)
+    Button(tk, text='Run', command=tk.destroy).grid(row = 2, sticky = N)
+    tk.mainloop()
+    if var1.get() == 1:
+        notesTrim(notesBook,notesPath)
+        notesToBatches(notesBook,batchBook,batchPath)
+        orderFill(batchBook, batchPath, ordersBook, ordersPath)
+        skuCheck(batchBook, batchPath)
+        batchNum = batchAssign(batchBook, batchPath, batchNum, listBook, listPath)
+        batchNumSheet.cell(row=1,column=1).value = batchNum
+        saveExcel(batchBook, batchPath)
+        tkinter.messagebox.showinfo(title='Sort', message='Manually sort Batches.xlsx')
+    if var2.get() == 1:
+        batchBook, batchPath = openExcel("S:/Workstation - DavidK/Code/Automation_Batching/Batches.xlsx")
+        listBook, listPath = openExcel("S:/Workstation - DavidK/Code/Automation_Batching/BatchList.xlsx")
 
-    tkinter.messagebox.showinfo(title='Sort', message='Manually sort Batches.xlsx')
-
-    batchBook, batchPath = openExcel("S:/Workstation - DavidK/Code/Automation_Batching/Batches.xlsx")
-    listBook, listPath = openExcel("S:/Workstation - DavidK/Code/Automation_Batching/BatchList.xlsx")
-
-    #Start the Batch Making process
-    getOrders(batchBook,batchPath,listBook,listPath)
+        #Start the Batch Making process
+        getOrders(batchBook,batchPath,listBook,listPath)
 
     print("Done")
 
