@@ -128,17 +128,19 @@ def skuCheck(batchBook, batchPath):
                 if sku.hd == True: 
                     batchSheet.cell(row = batchRow, column = 7).value = 'HD'
                     batchSheet.cell(row = batchRow, column = 8).value = sku.prodType#16 per batch for watch bands
-                    if sku.productmatch == 'Band':
-                        league = sku.league
-                        league = league.replace('/','')
-                        batchSheet.cell(row = batchRow, column = 9).value = league
-                        if sku.brand == True:
-                            batchSheet.cell(row = batchRow, column = 9).value = 'Brand'
+                    #if sku.productmatch == 'Band':
+                        #league = sku.league
+                        #league = league.replace('/','')
+                        #batchSheet.cell(row = batchRow, column = 9).value = league
+                        #if sku.brand == True:
+                        #    batchSheet.cell(row = batchRow, column = 9).value = 'Brand'
                     if sku.productmatch == 'Airpod' or sku.productmatch == 'BudsPro':#50 per batch
                         batchSheet.cell(row = batchRow, column = 8).value = 'Airpod'
                         #batchSheet.cell(row = batchRow, column = 9).value = sku.template
                     if sku.productmatch == 'HDXAirpod' or sku.productmatch == 'HDXBudsPro':#50 per batch
                         batchSheet.cell(row = batchRow, column = 8).value = 'HDXAirpod'
+                    if sku.prodType == 'HDXPro':
+                        batchSheet.cell(row = batchRow, column = 8).value = 'HDXPro'
                     if sku.productmatch == 'Phone':#14 per batch for 1-2 and 12 per batch for 3-4
                         batchSheet.cell(row = batchRow, column = 9).value = sku.template
                         if sku.prodType == 'Phone2' or sku.prodType == 'Phone4':
@@ -168,7 +170,8 @@ def skuCheck(batchBook, batchPath):
                     batchSheet.cell(row = batchRow, column = 7).value = 'Steel'#25 per batch
 
                 if sku.dyesub == True: 
-                    batchSheet.cell(row = batchRow, column = 7).value = 'Dyesub'#25 per batch
+                    #batchSheet.cell(row = batchRow, column = 7).value = 'Dyesub'#25 per batch
+                    batchSheet.cell(row = batchRow, column = 7).value = 'Steel'
 
                 if sku.screenprint == True or sku.stocked == True or sku.blank == True:#25 per batch, raise to 50 or 100 starting on black friday
                     batchSheet.cell(row = batchRow, column = 7).value = 'Screenprint'
@@ -276,18 +279,18 @@ def batchAssign(batchBook, batchPath, batchNum, listBook, listPath):
                         match temp1:
                             case 'HD':
                                 match temp2:
-                                    case '20':
-                                        if checkQTY > 16:
-                                            newBatchNum = True
-                                    case '22':
-                                        if checkQTY > 16:
-                                            newBatchNum = True
-                                    case '38':
-                                        if checkQTY > 16:
-                                            newBatchNum = True
-                                    case '42':
-                                        if checkQTY > 16:
-                                            newBatchNum = True
+                                    #case '20':
+                                    #    if checkQTY > 16:
+                                    #        newBatchNum = True
+                                    #case '22':
+                                    #    if checkQTY > 16:
+                                    #        newBatchNum = True
+                                    #case '38':
+                                    #    if checkQTY > 16:
+                                    #        newBatchNum = True
+                                    #case '42':
+                                    #    if checkQTY > 16:
+                                    #        newBatchNum = True
                                     case 'Gen1':
                                         if checkQTY > 50:
                                             newBatchNum = True
@@ -323,18 +326,18 @@ def batchAssign(batchBook, batchPath, batchNum, listBook, listPath):
                                             newBatchNum = True
                             case 'Engraved':
                                 match temp2:
-                                    case '20':
-                                        if checkQTY > 16:
-                                            newBatchNum = True
-                                    case '22':
-                                        if checkQTY > 16:
-                                            newBatchNum = True
-                                    case '38':
-                                        if checkQTY > 16:
-                                            newBatchNum = True
-                                    case '42':
-                                        if checkQTY > 16:
-                                            newBatchNum = True
+                                    #case '20':
+                                    #    if checkQTY > 16:
+                                    #        newBatchNum = True
+                                    #case '22':
+                                    #    if checkQTY > 16:
+                                    #        newBatchNum = True
+                                    #case '38':
+                                    #    if checkQTY > 16:
+                                    #        newBatchNum = True
+                                    #case '42':
+                                    #    if checkQTY > 16:
+                                    #        newBatchNum = True
                                     case 'Gen1':
                                         if checkQTY > 32:
                                             newBatchNum = True
