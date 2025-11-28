@@ -160,9 +160,9 @@ def skuCheck(batchBook, batchPath):
                     #    batchSheet.cell(row = batchRow, column = 8).value = '22'
                     league = sku.league
                     league = league.replace('/','')
-                    #batchSheet.cell(row = batchRow, column = 9).value = league
-                    #if sku.brand == True:
-                    #    batchSheet.cell(row = batchRow, column = 9).value = 'Brand'
+                    batchSheet.cell(row = batchRow, column = 9).value = league
+                    if sku.brand == True:
+                        batchSheet.cell(row = batchRow, column = 9).value = 'Brand'
 
                 if sku.steel == True: 
                     batchSheet.cell(row = batchRow, column = 7).value = 'Steel'#25 per batch
