@@ -98,7 +98,7 @@ def orderFill(batchBook, batchPath, ordersBook,ordersPath):
                         batchSheet.cell(row=batchRow,column=4).value = orderSheet.cell(row=ordersRow,column=4).value#Batch
                         batchSheet.cell(row=batchRow,column=5).value = orderSheet.cell(row=ordersRow,column=5).value#HoldUntil
                         batchSheet.cell(row=batchRow,column=6).value = orderSheet.cell(row=ordersRow,column=6).value#ShippingRequested
-                        batchSheet.cell(row=batchRow,column=11).value = orderSheet.cell(row=ordersRow,column=7).value#ShipFrom
+                        batchSheet.cell(row=batchRow,column=10).value = orderSheet.cell(row=ordersRow,column=7).value#ShipFrom
                         saveExcel(batchBook, batchPath)
                         orderSheet.delete_rows(ordersRow)
                         saveExcel(ordersBook,ordersPath)
@@ -180,7 +180,7 @@ def skuCheck(batchBook, batchPath):
                         batchSheet.cell(row = batchRow, column = 8).value = 'Airpods'
                     if sku.productmatch == 'BandCombo':
                         batchSheet.cell(row = batchRow, column = 8).value = 'Band'
-                    batchSheet.cell(row = batchRow, column = 9).value = batchSheet.cell(row=batchRow,column=11).value
+                    batchSheet.cell(row = batchRow, column = 9).value = batchSheet.cell(row=batchRow,column=10).value
 
                 if sku.combo == True:
                     batchSheet.cell(row = batchRow, column = 8).value = 'Combo'
@@ -240,7 +240,7 @@ def batchAssign(batchBook, batchPath, batchNum, listBook, listPath):
                         batchSheet.cell(row=batchRow,column=6).value = 'Priority'
                     elif batchShipping not in priorityList:
                         batchSheet.cell(row=batchRow,column=6).value = 'Not Priority'
-                    if batchSheet.cell(row=batchRow, column=11).value == 'Walmart' or batchSheet.cell(row=batchRow, column=11).value == 'Target Dropship (UPS)':
+                    if batchSheet.cell(row=batchRow, column=10).value == 'Walmart' or batchSheet.cell(row=batchRow, column=10).value == 'Target Dropship (UPS)':
                         batchSheet.cell(row=batchRow,column=6).value = 'Priority'
                 batchShipping = batchSheet.cell(row=batchRow,column=6).value
                 batch1 = batchSheet.cell(row=batchRow,column=7).value
@@ -267,7 +267,7 @@ def batchAssign(batchBook, batchPath, batchNum, listBook, listPath):
                             batchSheet.cell(row=tempRow,column=6).value = 'Priority'
                         else:
                             batchSheet.cell(row=tempRow,column=6).value = 'Not Priority'
-                        if batchSheet.cell(row=tempRow, column=11).value == 'Walmart' or batchSheet.cell(row=tempRow, column=11).value == 'Target Dropship (UPS)':
+                        if batchSheet.cell(row=tempRow, column=10).value == 'Walmart' or batchSheet.cell(row=tempRow, column=10).value == 'Target Dropship (UPS)':
                             batchSheet.cell(row=tempRow,column=6).value = 'Priority'
                     tempShipping = batchSheet.cell(row=tempRow,column=6).value
                     temp1 = batchSheet.cell(row=tempRow,column=7).value
@@ -420,7 +420,7 @@ def getOrders(batchBook,batchPath,listBook,listPath):
                 print('BatchNumber sheet break')
                 break
             ###########################################################
-            if batchSheet.cell(row=batchRow,column=4).value != None:# and batchSheet.cell(row=batchRow,column=10).value != 'BatchAssigned':#Column J for batch assigned
+            if batchSheet.cell(row=batchRow,column=4).value != None:
                 batchNum = batchSheet.cell(row=batchRow,column=4).value
                 if batchOld == '':#Start batchList[]
                     batchList = []
@@ -430,14 +430,12 @@ def getOrders(batchBook,batchPath,listBook,listPath):
                 elif batchOld != batchNum:#New batchList[]
                     print('Batch: '+str(batchOld)+': '+str(batchList))
                     fAPI(batchOld,batchList,listBook,listPath)
-                    #batchSheet.cell(row=batchRow,column=10).value = 'BatchAssigned'
                     saveExcel(batchBook, batchPath)
                     batchList = []
                     batchList.append(batchSheet.cell(row=batchRow,column=1).value)
                 if batchSheet.cell(row=batchRow+1,column=4).value == None:
                     print('Batch: '+str(batchNum)+': '+str(batchList))
                     fAPI(batchNum,batchList,listBook,listPath)
-                    #batchSheet.cell(row=batchRow,column=10).value = 'BatchAssigned'
                     saveExcel(batchBook, batchPath)
                 batchOld = batchNum
             batchRow+=1
