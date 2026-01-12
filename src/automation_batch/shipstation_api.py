@@ -163,12 +163,12 @@ def makeBatch(batchNum,shipmentId,rateId,warehouseId):
     with open(filename, 'w') as f:
         json.dump(data, f, indent=4)
 
-def makeEmptyBatch(externalId):
+def makeEmptyBatch(externalId,batchNotes):
     url = "https://api.shipstation.com/v2/batches"
 
     payload = {
     "external_batch_id": '"'+externalId+'"',
-    "batch_notes": "Automated Batch"
+    "batch_notes": '"'+batchNotes+'"'
     }
 
     headers = {
@@ -185,8 +185,7 @@ def makeEmptyBatch(externalId):
         json.dump(data, f, indent=4)
 
     batchId = data["batch_id"]
-    shstId = data["batch_number"]#shipstation id
-    return batchId, shstId
+    return batchId
 
 def addToBatch(batchId,shipmentId):
     url = "https://api.shipstation.com/v2/batches/"+batchId+"/add"
