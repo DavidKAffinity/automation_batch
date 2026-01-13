@@ -36,7 +36,7 @@ def basePaths(paths):
     return base_paths
 
 def getValue(data, path):
-    """Navigate nested dict/list using a string path like 'a.b[0].c'."""
+    #Navigate nested dict/list using a string path like 'a.b[0].c'
     current = data
     # Split on dots but keep parts with [indexes]
     parts = path.split('.')
@@ -57,6 +57,13 @@ def getValue(data, path):
                 current = current[int(idx)]
     return current
 
+def requestJson(response,title):#do after requests.post
+    print(response.status_code)
+    data = response.json()
+    filename = "./src/automation_batch/jsonOutputs/"+title+".json"
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=4)
+
 def getOrder(orderNum):#This works for awaiting shipping orders. External Shipment ID is Order Number
     headers = {"api-key": "xFLRkudJ/+cRC+jDUzSiB31fe6E4Vy1m1M1sootREdQ"}
     url = "https://api.shipstation.com/v2/shipments"
@@ -67,101 +74,11 @@ def getOrder(orderNum):#This works for awaiting shipping orders. External Shipme
     }
 
     response = requests.get(url, headers=headers, params=query)
+    requestJson(response,'order')
     data = response.json()
-
-    #filename = "S:/Workstation - DavidK/Code/Automation_Art/Json Outputs/getOrder.json"
-    #with open(filename, 'w') as f:
-    #    json.dump(data, f, indent=4)
 
     order = data["shipments"][0]["shipment_id"]
-    #carrier = data["shipments"][0]["carrier_id"]
-    #shipment = data["shipments"][0]["service_code"]
-    #package = data["shipments"][0]["packages"][0]["package_code"]
-
-    #if package == 'thick_envelope':
-    #    package = 'package'
-
-    #print(str(order)+": "+str(carrier)+": "+str(shipment))
-    return order#, carrier, shipment, package
-
-def getRateId(shipmentid,carrierid,shipment,package):
-    headers = {
-    "Content-Type": "application/json",
-    "api-key": "xFLRkudJ/+cRC+jDUzSiB31fe6E4Vy1m1M1sootREdQ"
-    }
-    url = "https://api.shipstation.com/v2/rates"
-
-    payload = {
-        "shipment_id": shipmentid,
-        "rate_options": {
-            "carrier_ids": [
-            carrierid
-            ]
-        }
-    }
-    
-    response = requests.post(url, json=payload, headers=headers)
-    data = response.json()
-
-    filename = "S:/Workstation - DavidK/Code/Automation_Art/Json Outputs/getRates.json"
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
-
-    shipmentMatch = findList(data,shipment)
-    baseShipment = basePaths(shipmentMatch)
-
-    if len(shipmentMatch) > 2:
-        print('Multiple Shipments with Carrier')
-        packageMatch = findList(data,package)
-        basePackage = basePaths(packageMatch)
-        common = baseShipment & basePackage
-        common = next(iter(common))
-        common = common+".rate_id"
-        #print(common)
-    else: 
-        print('One Shipment with Carrier')
-        common = next(iter(baseShipment))
-        common = common+".rate_id"
-        #print(common)
-
-    rateId = getValue(data,common)
-    return rateId
-
-def getCarriers():
-    headers = {"api-key": "xFLRkudJ/+cRC+jDUzSiB31fe6E4Vy1m1M1sootREdQ"}
-    url = "https://api.shipstation.com/v2/carriers"
-
-    query = {}
-
-    response = requests.get(url, headers=headers, params=query)
-    data = response.json()
-
-    #filename = "S:/Workstation - DavidK/Code/Automation_Art/Json Outputs/getCarriers.json"
-    #with open(filename, 'w') as f:
-    #    json.dump(data, f, indent=4)
-
-def makeBatch(batchNum,shipmentId,rateId,warehouseId):
-    url = "https://api.shipstation.com/v2/batches"
-
-    payload = {
-    "external_batch_id": batchNum,
-    "batch_notes": "TEST BATCH WITH MULTIPLE",
-    "shipment_ids": shipmentId,
-    "rate_ids": rateId,
-    "warehouse_ids": warehouseId
-    }
-
-    headers = {
-    "Content-Type": "application/json",
-    "api-key": "xFLRkudJ/+cRC+jDUzSiB31fe6E4Vy1m1M1sootREdQ"
-    }
-
-    response = requests.post(url, json=payload, headers=headers)
-    data = response.json()
-
-    filename = "S:/Workstation - DavidK/Code/Automation_Art/Json Outputs/makeBatch.json"
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
+    return order
 
 def makeEmptyBatch(externalId,batchNotes):
     url = "https://api.shipstation.com/v2/batches"
@@ -191,52 +108,6 @@ def addToBatch(batchId,shipmentId):
     url = "https://api.shipstation.com/v2/batches/"+batchId+"/add"
 
     payload = {
-        "shipment_ids": [shipmentId]#shipmentId,
-        #"rate_ids": [rateId],#rateId,
-        #"warehouse_ids": warehouseId
-    }
-
-    headers = {
-    "Content-Type": "application/json",
-    "api-key": "xFLRkudJ/+cRC+jDUzSiB31fe6E4Vy1m1M1sootREdQ"
-    }
-
-    response = requests.post(url, json=payload, headers=headers)
-    #print(response.status_code)
-    #data = response.json()
-
-    #filename = "S:/Workstation - DavidK/Code/Automation_Art/Json Outputs/makeBatch.json"
-    #with open(filename, 'w') as f:
-    #    json.dump(data, f, indent=4)
-
-def RATETEST():
-    headers = {
-    "Content-Type": "application/json",
-    "api-key": "xFLRkudJ/+cRC+jDUzSiB31fe6E4Vy1m1M1sootREdQ"
-    }
-    url = "https://api.shipstation.com/v2/rates"
-
-    payload = {
-        "shipment_id": "se-1326980720",
-        "rate_options": {
-            "carrier_ids": ["se-67891"],
-            "package_type": ["fedex_envelope_onerate"],
-            "service_code": ["fedex_2day"]
-        }
-    }
-    
-    response = requests.post(url, json=payload, headers=headers)
-    data = response.json()
-    print(response.status_code)
-
-    filename = "S:/Workstation - DavidK/Code/Automation_Art/Json Outputs/FedEx.json"
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
-
-def BATCHTEST(batchId,shipmentId):
-    url = "https://api.shipstation.com/v2/batches/"+batchId+"/add"
-
-    payload = {
         "shipment_ids": [shipmentId]
     }
 
@@ -245,44 +116,42 @@ def BATCHTEST(batchId,shipmentId):
     "api-key": "xFLRkudJ/+cRC+jDUzSiB31fe6E4Vy1m1M1sootREdQ"
     }
 
-    response = requests.post(url, json=payload, headers=headers)
-    #data = response.json()
-    print(response.status_code)
+    #response = requests.post(url, json=payload, headers=headers)
+    requests.post(url, json=payload, headers=headers)
 
-    #filename = "S:/Workstation - DavidK/Code/Automation_Art/Json Outputs/FedEx.json"
-    #with open(filename, 'w') as f:
-    #    json.dump(data, f, indent=4)
+def listByTag(response,targetTag):
+    shipmentList = []
 
-def getbatchbyid():
-    url = "https://api.shipstation.com/v2/batches/external_batch_id/FedExTestBatchNov42025"
+    for shipment in response.get("shipments",[]):
+        tags = shipment.get("tags", [])
 
+        if any(tag.get("name") == targetTag for tag in tags):
+            shipmentList.append(shipment.get("shipment_id"))
+
+    print(f"Found {len(shipmentList)} matching shipments.")
+    return shipmentList
+
+def listShipments():
     headers = {"api-key": "xFLRkudJ/+cRC+jDUzSiB31fe6E4Vy1m1M1sootREdQ"}
+    url = "https://api.shipstation.com/v2/shipments"
+    
+    query = {
+        "shipment_status": "pending",#swap to pending when live, label_purchased if testing with shipped products
+        "page_size": 100000,
+    }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, params=query)
+    requestJson(response,'list')
     data = response.json()
-    print(response.status_code)
-
-    filename = "S:/Workstation - DavidK/Code/Automation_Art/Json Outputs/FedEx.json"
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
+    return data
 
 def main():
-    #shipmentId, carrier, shipment, package = getOrder(7117854)
-    #rateId = getRateId(shipmentId,carrier,shipment,package)#put this variable in when getting from getRates(): shipment
-    #print(shipmentId+": "+rateId)
-    #getCarriers()
+    #response = listShipments()
+    #shipmentList = listByTag(response,'A) Needs to print')
+    #print(shipmentList)
 
-    #batchId, shstid = makeEmptyBatch('FedExTestBatch-Nov42025-Test2')
-    #print(batchId)
-
-    #getbatchbyid()
-
-    shipmentId, carrier, shipment, package = getOrder(7118467)
-    #rateId = getRateId(shipmentId,carrier,shipment,package)
-    BATCHTEST("se-309493174",shipmentId)
-    
-    #RATETEST()
+    getOrder(7149797)
 
     print('done')
 
-#main()
+main()

@@ -1,0 +1,219 @@
+{
+    "shipments": [
+        {
+            "shipment_id": "se-1345873061",
+            "carrier_id": "se-67888",
+            "service_code": "usps_ground_advantage",
+            "requested_shipment_service": "Standard",
+            "external_shipment_id": "7149797",
+            "shipment_number": "7149797",
+            "hold_until_date": null,
+            "ship_date": null,
+            "ship_by_date": null,
+            "created_at": "2026-01-10T00:55:52.61Z",
+            "modified_at": "2026-01-13T18:44:17.74Z",
+            "shipment_status": "pending",
+            "ship_to": {
+                "geolocation": null,
+                "instructions": null,
+                "name": "Kimberly Bachmann",
+                "phone": "8137772748",
+                "email": "B0DDEB4032AC485B8C4BC5A4C077329E@relay.walmart.com",
+                "company_name": "",
+                "address_line1": "9036 CALLE ALTA",
+                "address_line2": "",
+                "address_line3": null,
+                "city_locality": "NEW PRT RCHY",
+                "state_province": "FL",
+                "postal_code": "34655-5239",
+                "country_code": "US",
+                "address_residential_indicator": "yes"
+            },
+            "ship_from": {
+                "instructions": null,
+                "name": "Affinity Bands",
+                "phone": "2482509689",
+                "email": null,
+                "company_name": "Affinity Bands",
+                "address_line1": "353 Oliver Dr",
+                "address_line2": "",
+                "address_line3": "",
+                "city_locality": "Troy",
+                "state_province": "MI",
+                "postal_code": "48084",
+                "country_code": "US",
+                "address_residential_indicator": "no"
+            },
+            "warehouse_id": "se-200386",
+            "return_to": {
+                "instructions": null,
+                "name": "Affinity Bands",
+                "phone": "2482509689",
+                "email": null,
+                "company_name": "Affinity Bands",
+                "address_line1": "353 Oliver Dr",
+                "address_line2": "",
+                "address_line3": "",
+                "city_locality": "Troy",
+                "state_province": "MI",
+                "postal_code": "48084",
+                "country_code": "US",
+                "address_residential_indicator": "no"
+            },
+            "is_return": false,
+            "confirmation": "none",
+            "customs": null,
+            "external_order_id": null,
+            "order_source_code": null,
+            "advanced_options": {
+                "bill_to_account": null,
+                "bill_to_country_code": null,
+                "bill_to_party": null,
+                "bill_to_postal_code": null,
+                "bill_to_name": null,
+                "bill_to_address_line1": null,
+                "contains_alcohol": false,
+                "delivered_duty_paid": false,
+                "non_machinable": false,
+                "saturday_delivery": false,
+                "dry_ice": false,
+                "dry_ice_weight": null,
+                "fedex_freight": null,
+                "third_party_consignee": false,
+                "guaranteed_duties_and_taxes": false,
+                "ancillary_endorsements_option": null,
+                "freight_class": null,
+                "custom_field1": "Walmart_Marketplace",
+                "custom_field2": "129101089861040",
+                "custom_field3": "Affinity Brand Partners",
+                "collect_on_delivery": null,
+                "return_pickup_attempts": null,
+                "additional_handling": false,
+                "own_document_upload": false,
+                "limited_quantity": false,
+                "event_notification": false,
+                "import_services": false,
+                "override_holiday": false,
+                "delivery_as_addressed": false
+            },
+            "comparison_rate_type": null,
+            "retail_rate": null,
+            "shipping_rule_id": null,
+            "insurance_provider": "none",
+            "tags": [
+                {
+                    "tag_id": 0,
+                    "name": "A) Needs to print",
+                    "color": null
+                },
+                {
+                    "tag_id": 0,
+                    "name": "D) MTO To Do",
+                    "color": null
+                },
+                {
+                    "tag_id": 0,
+                    "name": "K) High Def Band",
+                    "color": null
+                }
+            ],
+            "store_id": "se-214713",
+            "packages": [
+                {
+                    "shipment_package_id": "se-458064772",
+                    "package_id": "se-3",
+                    "package_code": "package",
+                    "package_name": "Package",
+                    "weight": {
+                        "value": 2.0,
+                        "unit": "ounce"
+                    },
+                    "dimensions": {
+                        "unit": "inch",
+                        "length": 0.0,
+                        "width": 0.0,
+                        "height": 0.0
+                    },
+                    "insured_value": {
+                        "currency": "usd",
+                        "amount": 0.0
+                    },
+                    "label_messages": {
+                        "reference1": null,
+                        "reference2": null,
+                        "reference3": null
+                    },
+                    "external_package_id": null,
+                    "content_description": null,
+                    "products": null,
+                    "dangerous_goods_package_info": null
+                }
+            ],
+            "total_weight": {
+                "value": 2.0,
+                "unit": "ounce"
+            },
+            "items": [
+                {
+                    "sales_order_id": null,
+                    "sales_order_item_id": null,
+                    "quantity": 1,
+                    "name": "Auburn Tigers HD Phone Case Compatible with MagSafe Samsung Galaxy S25  Playbook  by Affinity Bands",
+                    "sku": "C-HD5SR25-178",
+                    "bundle_sku": null,
+                    "external_order_id": null,
+                    "external_order_item_id": null,
+                    "asin": null,
+                    "order_source_code": null,
+                    "item_id": "502448508577",
+                    "allocation_status": null,
+                    "image_url": "https://abp.cwa.sellercloud.com/images/products/C-HD5SR25-178/b34028cf-922e-4bda-b992-3774288381ab.jpg",
+                    "weight": {
+                        "value": 1.0,
+                        "unit": "ounce"
+                    },
+                    "unit_price": 30.99,
+                    "tax_amount": null,
+                    "shipping_amount": null,
+                    "inventory_location": "D0230",
+                    "options": [],
+                    "product_id": "93529217",
+                    "fullfilment_sku": null,
+                    "upc": null
+                }
+            ],
+            "notes_from_buyer": "",
+            "notes_for_gift": null,
+            "is_gift": false,
+            "assigned_user": null,
+            "amount_paid": {
+                "currency": "usd",
+                "amount": 33.16
+            },
+            "shipping_paid": {
+                "currency": "usd",
+                "amount": 0.0
+            },
+            "tax_paid": {
+                "currency": "usd",
+                "amount": 2.17
+            },
+            "zone": 5,
+            "dangerous_goods_declaration": null,
+            "sender_info": null
+        }
+    ],
+    "total": 1,
+    "page": 1,
+    "pages": 1,
+    "links": {
+        "first": {
+            "href": "https://api.shipstation.com/v2/shipments?shipment_status=pending&external_shipment_id=7149797&page=1&page_size=25"
+        },
+        "last": {
+            "href": "https://api.shipstation.com/v2/shipments?shipment_status=pending&external_shipment_id=7149797&page=1&page_size=25"
+        },
+        "prev": {},
+        "next": {}
+    }
+}
