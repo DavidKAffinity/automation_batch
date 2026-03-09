@@ -175,6 +175,12 @@ def batchAssign(batchBook, batchPath, batchNum):
         'First Class Package International',
         'Free FedEx 2 Day over $55', 
         'Free FedEx 2 Day over $75',
+        'Fedex2DayOneRate',
+        'Fedex 2 Day Guaranteed Shipping',
+        'Fedex Home Delivery',
+        'FedexStandardOvernight',
+        'Free Fedex 2 Day over $55', 
+        'Free Fedex 2 Day over $75',
         'USPS First Class International',
         'USPS Priority Mail 2-3 Day Delivery'
         #'UPS 2nd Day Air' Not actually priority
