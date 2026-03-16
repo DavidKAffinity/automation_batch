@@ -22,3 +22,8 @@ Thumbs.db
 
 # Ignore environment or secret files
 .env
+
+# Ignore tests
+.tests
+
+/src/automation_batch/PickLists
