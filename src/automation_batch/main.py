@@ -560,7 +560,7 @@ def main():
             na_position="last"
         )
         makePicklist(batch_df, batchNum)
-        batch_df["batchNum"] = batchID
+        batch_df["batchNum"] = batchNum
         sku_list = []
         for _, row in batch_df.iterrows():
             sku_list.extend([row["sku"]] * int(row["quantity"]))
