@@ -309,7 +309,7 @@ def getOrder(shipment_id, original_row):
     priorityList = [ 'Priority', '2 Day', '2-Day', '2nd Day', 'Expedited', 'FedEx2DayOneRate', 'FedEx 2 Day Guaranteed Shipping',
         'FedEx Home Delivery', 'FedExStandardOvernight', 'First Class Package International', 'Free FedEx 2 Day over $55',  'Free FedEx 2 Day over $75',
         'Fedex2DayOneRate', 'Fedex 2 Day Guaranteed Shipping', 'Fedex Home Delivery', 'FedexStandardOvernight', 'Free Fedex 2 Day over $55', 
-        'Free Fedex 2 Day over $75', 'USPS First Class International', 'USPS Priority Mail 2-3 Day Delivery'
+        'Free Fedex 2 Day over $75', 'USPS First Class International', 'USPS Priority Mail 2-3 Day Delivery', "UPS Ground"
         #'UPS 2nd Day Air' Not actually priority
         ]
     print(shipment_id)
