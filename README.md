@@ -24,6 +24,13 @@ This will open the project folder in vs code and allow you to click on main.py i
 .venv\Scripts\Activate.ps1
 ```
 
+### Run the requirements.txt file
+
+In the terminal run this command
+```powershell
+pip install -r requirements.txt
+```
+
 ### Open main.py in VS Code and Run it
 Double click on main.py inside of "S:/Workstation - DavidK/Projects/automation_batch/srs/automation_batch"
 This will cause the code to load into VS Code where you can edit it
