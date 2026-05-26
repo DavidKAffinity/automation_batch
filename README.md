@@ -13,11 +13,10 @@ Press CTRL + ` (Backtick, same button as tilde)
 You should see a line that says PS "path/you're/in"
 If it does not say PS check the right side of the Terminal, there will be a plus sign and a trash can, click the arrow next to the plus sign and select PowerShell
 
-### Navigate to the automation_art Directory
+### Open the automation_art Project
 
-```powershell
-cd "S:/Workstation - DavidK/Projects/automation_batch"
-```
+Click File -> Open Folder -> automation_batch
+This will open the project folder in vs code and allow you to click on main.py in the src/automation_art
 
 ### Activate the Virtual Environment
 
